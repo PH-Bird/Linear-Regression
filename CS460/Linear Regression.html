@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Regression Case Study</title>
+</head>
+
+<body>
+  <center>
+    <h1>Linear Regression</h1>
+  </center>
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+  <center>
+    <h2>Introduction (0.5 คะแนน)</h2>
+  </center>
+  <p>Linear Regression เป็นการศึกษาความสัมพันธ์ระหว่างข้อมูล 2 ตัวแปรเพื่อนำมาใช้ทำนายค่าตัวแปรตาม (y)
+    โดยอาศัยค่าของตัวแปรอิสระเพียงหนึ่งตัว (x) ซึ้งทั้ง 2 ตัวแปรจะมีความสัมพันธ์กันในลักษณะเชิงเส้น
+    ในการศึกษาเมื่อเรานำเอาชุดข้อมูลของตัวแปรทั้งสองมาพล็อตจุดข้อมูลลงบนกราฟ
+    จากนั้นก็สามารถลากเส้นตรงเพื่อแสดงความสัมพันธ์ระหว่างจุดได้</p>
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+  <center>
+    <h2>Explain Algorithm (0.5 คะแนน)</h2>
+  </center>
+  <p>สามารถใช้เส้นตรงแห่งความสัมพันธ์ของตัวแปรทั้ง 2 ตัวแปรมาทำนายหาค่าของตัวแปร y ด้วยค่าตัวแปร x
+    โดยการลากเส้นจากค่าตัวแปร x ในแกน X ขึ้นตรงไปบรรจบกับเส้นความสัมพันธ์แล้วลากเส้นจากจุดบรรจบต่อไปตัดกับแกน Y
+    และอ่านออกมาเป็นค่า y ก็คือผลของการทำนาย</p>
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+  <center>
+    <h2>Case Study (1 คะแนน)</h2>
+  </center>
+  <p>มีชุดข้อมูลที่ประกอบด้วยราคาบ้าน (Y) และขนาดพื้นที่ของบ้าน (X) ดังนี้:</P>
+  <table border="1">
+    <tr>
+      <th>ขนาดพื้นที่ (ตารางเมตร)</th>
+      <th>ราคาบ้าน (พันดอลลาร์)</th>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>150</td>
+      <td>450</td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>600</td>
+    </tr>
+    <tr>
+      <td>250</td>
+      <td>750</td>
+    </tr>
+    <tr>
+      <td>300</td>
+      <td>900</td>
+    </tr>
+  </table>
+
+  <h3>วิธีคิดและคำนวณ</h3>
+  <p>กำหนดสมการ: สมการของ Linear Regression คือ <code>y = mx + b</code> โดยที่:</p>
+  <ul>
+    <li><strong>y</strong> คือ ราคาบ้าน</li>
+    <li><strong>x</strong> คือ ขนาดพื้นที่</li>
+    <li><strong>m</strong> คือ ความชันของเส้นตรง (slope)</li>
+    <li><strong>b</strong> จุดตัดกับแกน <code>y</code> (intercept)</li>
+  </ul>
+  <p>คำนวณความชัน (m): สำหรับชุดข้อมูลนี้, เราสามารถคำนวณความชัน m จาก m = </p>
+  <center><img src="EX.png" alt="สูตร"></center>
+  <p>คำนวณจุดตัด (b): หลังจากที่เราได้ความชัน m แล้ว, เราสามารถคำนวณจุดตัด b ด้วยสมการ b = ȳ - mx̄ โดยที่ x̄ และ ȳ
+    คือค่าเฉลี่ยของ x และ y ตามลำดับ</p>
+  <p>ใช้สมการเส้นตรงในการทำนาย: ด้วยค่า m และ b ที่คำนวณได้, เราสามารถใช้สมการ <code>y = mx + b</code>
+    เพื่อทำนายราคาบ้านสำหรับขนาดพื้นที่ใด ๆ</p>
+  <h3>ตัวอย่างการคำนวณ:</h3>
+  <p>สมมติว่าเรามีค่า m = 3 และ b = 0 , สมการของเราจะเป็น y=3x สำหรับบ้านขนาด 350 ตารางเมตร (x=350), ราคาบ้าน (y)
+    ที่ทำนายได้จะเป็น:<br>y = 3×350 = 1050 ดังนั้น บ้านขนาด 350 ตารางเมตรจะมีราคาประมาณ 1,050 พันดอลลาร์</p>
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+  <center>
+    <h2>Code (4 คะแนน)</h2>
+  </center>
+  <center>
+    <table border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="64" valign="top">
+          <p align="center"><strong>บรรทัดที่</strong></p>
+        </td>
+        <td width="552" valign="top">
+          <p align="center"><strong>โปรแกรม</strong><strong> </strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="64" valign="top">
+          <pre>
+          1<br>
+          2<br>
+          3<br>
+          4<br>
+          5<br>
+          6<br>
+          7<br>
+          8<br>
+          9<br>
+          10<br>
+          </pre>
+        </td>
+        <td width="552" valign="top">
+          <pre>
+          import numpy as np<br>
+          from sklearn.linear_model import LinearRegression<br>
+          import matplotlib.pyplot as plt<br>
+          X = np.array([100, 150, 200, 250, 300]).reshape(-1, 1)<br>
+          y = np.array([300, 450, 600, 750, 900])<br>
+          model = LinearRegression()<br>
+          model.fit(X, y)<br>
+          X_predict = np.array([350]).reshape(-1, 1)<br>
+          y_predict = model.predict(X_predict)<br>
+          y_predict, model.coef_, model.intercept_<br>
+        </pre>
+        </td>
+      </tr>
+    </table>
+  </center>
+  <h3>ผลลัพธ์การทำงานของโปรแกรม :</h3>
+  <center>
+    <table border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="64" valign="top">
+          <p align="center"><strong>บรรทัดที่</strong></p>
+        </td>
+        <td width="552" valign="top">
+          <p align="center"><strong>ผลลัพธ์</strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="64" valign="top">
+          <p align="center">1 <br>
+          </p>
+        </td>
+        <td width="552" valign="top">
+          <p> (array([1050.]), array([3.]), 4.547473508864641e-13)<br>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </center><br>
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+  <center>
+    <h2>Explain Code (2 คะแนน)</h2>
+  </center>
+  <center>
+    <h3>คำอธิบายโปรแกรม มีรายละเอียดดังนี้</h3>
+  </center>
+  <center>
+    <table border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="64" valign="top">
+          <p align="center"><strong>บรรทัดที่</strong></p>
+        </td>
+        <td width="552" valign="top">
+          <p align="center"><strong>โปรแกรม</strong><strong> </strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="64" valign="top">
+          <pre>
+          บรรทัดที่ 1 และ 2 <br>
+          บรรทัดที่ 3 และ 4 <br>
+          บรรทัดที่ 5 และ 6 <br>
+          บรรทัดที่ 7 และ 8 <br>
+          </pre>
+        </td>
+        <td width="552" valign="top">
+          <pre>
+          นำเข้าแพคเกจที่จำเป็น: นำเข้า numpy สำหรับการจัดการอาร์เรย์และการคำนวณทางคณิตศาสตร์, และ LinearRegression จาก sklearn.linear_model เพื่อใช้สำหรับการสร้างโมเดลการถดถอยเชิงเส้น <br>
+          กำหนดข้อมูลสำหรับ X และ y: กำหนดข้อมูล X คือขนาดพื้นที่ของบ้าน (เป็นตารางเมตร) และ y คือราคาบ้าน (เป็นพันดอลลาร์). reshape(-1, 1) ใช้สำหรับปรับขนาด X เป็น 2D array เพื่อใช้ในการเรียนรู้เชิงเส้น <br>
+          สร้างโมเดล Linear Regression และฝึกสอนข้อมูล: สร้างอินสแตนซ์ของ LinearRegression และใช้เมธอด fit เพื่อฝึกสอนโมเดลด้วยข้อมูล X และ y<br>
+          ทำนายราคาบ้านจากขนาดพื้นที่ใหม่: ทำนายราคาบ้านสำหรับพื้นที่ 350 ตารางเมตรโดยใช้ predict ซึ่งเป็นเมธอดของโมเดล Linear Regression <br>
+        </pre>
+        </td>
+      </tr>
+    </table>
+  </center>
+  <center>
+    <h3>คำอธิบายผลลัพธ์ มีรายละเอียดดังนี้</h3>
+    <center>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="64" valign="top">
+            <p align="center"><strong>บรรทัดที่</strong></p>
+          </td>
+          <td width="552" valign="top">
+            <p align="center"><strong>โปรแกรม</strong><strong> </strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="64" valign="top">
+            <pre>
+          บรรทัดที่ 1 <br>
+          </pre>
+          </td>
+          <td width="552" valign="top">
+            <pre>
+          การทำนายราคาบ้านจากโมเดลการถดถอยเชิงเส้น (Linear Regression) สำหรับขนาดพื้นที่ 350 ตารางเมตร ให้ผลการทำนายราคาบ้านอยู่ที่ 1,050 พันดอลลาร์ <br>
+        </pre>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </center>
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+  <center>
+    <h2>Video Present Project</h2>
+  </center>
+  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+  <center>
+    <h2>จัดทำโดย</h2>
+  </center>
+  <center><img src="IMG.jpg" width="250" height="250" alt="My picture"></center>
+  <center>
+    <p>นาย ปัณณธร หินโทน<br>มหาวิทยาลัยกรุงเทพ คณะเทคโนโลยีสารสนเทศและนวัตกรรม<br>สาขาวิชาวิทยาการคอมพิวเตอร์
+      (มุ่งเน้นวิทยาการข้อมูลและความมั่นคงปลอดภัยไซเบอร์)<br>ชั้นปีที่ 4 / รหัสนักศึกษา 1630700415</p>
+  </center>
+</body>
+
+</html>
